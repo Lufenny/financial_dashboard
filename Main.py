@@ -1,44 +1,19 @@
 import streamlit as st
 
-st.set_page_config(page_title="Financial Scenario Dashboard", layout="wide")
-
 st.title("📊 Financial Scenario Dashboard")
 
-# --- Initialize session state ---
+# Initialize session state
 if "step" not in st.session_state:
     st.session_state.step = 1
 
-# --- Navigation Functions ---
+# Function to go to next step
 def next_step():
-    if st.session_state.step < 7:
-        st.session_state.step += 1
+    st.session_state.step += 1
 
+# Function to go back
 def prev_step():
-    if st.session_state.step > 1:
-        st.session_state.step -= 1
+    st.session_state.step -= 1
 
-# --- Sidebar direct navigation ---
-page = st.sidebar.radio("📂 Jump to section:", [
-    "🧩 Hypotheses",
-    "📂 Data Sources",
-    "🔍 Exploratory Data Analysis",
-    "⚙️ Data Process",
-    "🤖 Modelling",
-    "📈 Results & Interpretation",
-    "🚀 Deployment"
-])
-
-# Map sidebar selection to step
-mapping = {
-    "🧩 Hypotheses": 1,
-    "📂 Data Sources": 2,
-    "🔍 Exploratory Data Analysis": 3,
-    "⚙️ Data Process": 4,
-    "🤖 Modelling": 5,
-    "📈 Results & Interpretation": 6,
-    "🚀 Deployment": 7,
-}
-st.session_state.step = mapping[page]
 
 # --- Step 1: Hypotheses ---
 if st.session_state.step == 1:
@@ -49,6 +24,7 @@ if st.session_state.step == 1:
     """)
     st.button("Next →", on_click=next_step)
 
+
 # --- Step 2: Data Sources ---
 elif st.session_state.step == 2:
     st.header("📂 Data Sources")
@@ -56,9 +32,10 @@ elif st.session_state.step == 2:
     - Input assumptions provided by user (contributions, returns, duration).  
     - Historical benchmarks for validation.  
     """)
-    col1, col2, col3 = st.columns([1,4,1])
+    col1, col2 = st.columns(2)
     col1.button("← Back", on_click=prev_step)
-    col3.button("Next →", on_click=next_step)
+    col2.button("Next →", on_click=next_step)
+
 
 # --- Step 3: EDA ---
 elif st.session_state.step == 3:
@@ -67,9 +44,10 @@ elif st.session_state.step == 3:
     - Word clouds, summary stats, and visuals.  
     - Patterns and anomalies before modelling.  
     """)
-    col1, col2, col3 = st.columns([1,4,1])
+    col1, col2 = st.columns(2)
     col1.button("← Back", on_click=prev_step)
-    col3.button("Next →", on_click=next_step)
+    col2.button("Next →", on_click=next_step)
+
 
 # --- Step 4: Data Process ---
 elif st.session_state.step == 4:
@@ -77,9 +55,10 @@ elif st.session_state.step == 4:
     st.markdown("""
     - Data cleaning, transformation, and feature engineering.  
     """)
-    col1, col2, col3 = st.columns([1,4,1])
+    col1, col2 = st.columns(2)
     col1.button("← Back", on_click=prev_step)
-    col3.button("Next →", on_click=next_step)
+    col2.button("Next →", on_click=next_step)
+
 
 # --- Step 5: Modelling ---
 elif st.session_state.step == 5:
@@ -88,9 +67,10 @@ elif st.session_state.step == 5:
     - Scenario analysis (baseline / optimistic / pessimistic).  
     - Sensitivity analysis of contributions and returns.  
     """)
-    col1, col2, col3 = st.columns([1,4,1])
+    col1, col2 = st.columns(2)
     col1.button("← Back", on_click=prev_step)
-    col3.button("Next →", on_click=next_step)
+    col2.button("Next →", on_click=next_step)
+
 
 # --- Step 6: Results ---
 elif st.session_state.step == 6:
@@ -99,9 +79,10 @@ elif st.session_state.step == 6:
     - Growth projections (2025–2045).  
     - Comparison between different strategies.  
     """)
-    col1, col2, col3 = st.columns([1,4,1])
+    col1, col2 = st.columns(2)
     col1.button("← Back", on_click=prev_step)
-    col3.button("Next →", on_click=next_step)
+    col2.button("Next →", on_click=next_step)
+
 
 # --- Step 7: Deployment ---
 elif st.session_state.step == 7:
